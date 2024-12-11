@@ -2,11 +2,17 @@ package acc.br.demo;
 
 import org.springframework.data.annotation.Id;
 
+
 public class Score {
+	
 	@Id
 	private Integer id;
 	
 	private int vitorias, derrotas, empates;
+	
+	 public Score() {
+	        this.id = 1;
+	    }
 	
 	public Score(int vitorias, int derrotas, int empates) {
 		super();
