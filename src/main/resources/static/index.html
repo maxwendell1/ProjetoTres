@@ -1,15 +1,70 @@
-<html>
-	<head>
-		<title>
-			Este é o Projeto Desafio
-		</title>
-	</head>
-	<body>
-		<p> Qual será o resultado? </p>
-		<a href="/teste?escolha=pedra"> Pedra </a>
-		<br>
-		<a href="/teste?escolha=papel"> Papel </a>
-		<br>
-		<a href="/teste?escolha=tesoura"> Tesoura </a>
-	</body>
-</html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedra, Papel e Tesoura</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+
+        .game-container {
+            text-align: center;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .option {
+            padding: 20px;
+            font-size: 24px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .option:hover {
+            transform: scale(1.1);
+            background-color: #e0e0e0;
+        }
+
+        .title {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="title">Pedra, Papel e Tesoura</div>
+        <div class="options">
+            <div class="option" id="rock">Pedra</div>
+            <div class="option" id="paper">Papel</div>
+            <div class="option" id="scissors">Tesoura</div>
+        </div>
+    </div>
+
+    <script>
+        // Função para redirecionar com base na escolha
+        function redirecionar(escolha) {
+            window.location.href = `/teste?escolha=${escolha}`;
+        }
+
+        // Adicionando eventos de clique para as opções
+        document.getElementById('rock').addEventListener('click', () => redirecionar('pedra'));
+        document.getElementById('paper').addEventListener('click', () => redirecionar('papel'));
+        document.getElementById('scissors').addEventListener('click', () => redirecionar('tesoura'));
+    </script>
+</body>
+</html

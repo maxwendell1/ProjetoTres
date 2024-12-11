@@ -44,4 +44,13 @@ public class Score {
 	public void setEmpates(int empates) {
 		this.empates = empates;
 	}
+	
+	@Override
+	public String toString() {
+	    return "Score {" +
+	           "vitorias=" + vitorias +
+	           ", derrotas=" + derrotas +
+	           ", empates=" + empates +
+	           '}';
+	}
 }

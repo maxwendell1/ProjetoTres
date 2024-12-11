@@ -32,7 +32,7 @@ public class WebController {
     public String incrementScore(@RequestParam(name = "type") String type) {
         try {
             Score score = scoreRepo.findById(1).orElseThrow();
-            switch (type.toLowerCase()) {
+            switch (type) {
                 case "Ganhou!":
                     score.setVitorias(score.getVitorias() + 1);
                     break;
@@ -53,7 +53,6 @@ public class WebController {
     }
 
     @PostMapping("/score/reset")
-    @ResponseBody
     public String resetScore() {
         try {
             Score score = scoreRepo.findById(1).orElseThrow();
@@ -61,17 +60,18 @@ public class WebController {
             score.setDerrotas(0);
             score.setEmpates(0);
             scoreRepo.save(score);
-            return "Score reset successfully!";
         } catch (Exception e) {
-            return "Error resetting score: " + e.getMessage();
+            e.getMessage();
         }
+       return "redirect:/";
     }
 
     @GetMapping("/teste")
     public String teste(@RequestParam(name = "escolha") String aEscolha, Model model) {
         String saida = "Empate";
+        Score score = getScore();
         try {
-            Score score = scoreRepo.findById(1).orElseThrow();
+            score = scoreRepo.findById(1).orElseThrow();
             if (aEscolha.equalsIgnoreCase("Papel")) {
                 saida = "Ganhou!";
                 score.setVitorias(score.getVitorias() + 1);
@@ -85,8 +85,11 @@ public class WebController {
         } catch (Exception e) {
             saida = "Erro ao atualizar o score: " + e.getMessage();
         }
-        model.addAttribute("saida", saida);
-        model.addAttribute("aEscolha", aEscolha);
+        model.addAttribute("saida", saida.toUpperCase());
+        model.addAttribute("aEscolha", aEscolha.toUpperCase());
+        model.addAttribute("vitorias", score.getVitorias());
+        model.addAttribute("derrotas", score.getDerrotas());
+        model.addAttribute("empates", score.getEmpates());
         return "resultado";
     }
 }

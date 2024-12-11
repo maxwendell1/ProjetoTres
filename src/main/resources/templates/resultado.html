@@ -1,11 +1,91 @@
-<html>
-	<body>
-		<h1> Hello World! Estamos na página de resultados </h1>
-		<br>
-		Você escolheu: <span th:text="${aEscolha}"/>
-		<br>
-		O resultado da sua escolha foi: <span th:text="${saida}"/>
-		<br>
-		Seu score é: <span th:text="${score}"/>
-	</body>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado do Jogo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .game-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin: 10px;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+
+        .result-info {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Resultado do Jogo</h1>
+        <p>Você escolheu: <span th:text="${aEscolha}"></span></p>
+        <p>O resultado da sua escolha foi: <span th:text="${saida}"></span></p>
+
+        <form action="/" method="get">
+            <button class="button" type="submit">JOGAR NOVAMENTE!</button>
+        </form>
+
+        <div class="result-info">
+            <h2>Placar Atual:</h2>
+            <ul>
+                <li>Vitórias: <span th:text="${vitorias}"></span></li>
+                <li>Derrotas: <span th:text="${derrotas}"></span></li>
+                <li>Empates: <span th:text="${empates}"></span></li>
+            </ul>
+        </div>
+
+        <form action="/score/reset" method="post">
+            <button class="button" type="submit">RESET PLACAR</button>
+        </form>
+    </div>
+</body>
 </html>
